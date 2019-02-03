@@ -22,20 +22,18 @@ class PokemonTypeCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
     }
     
     private func setupView(view: UIView) -> UIView{
-        view.layer.cornerRadius = 25
-        view.layer.borderColor = UIColor.white.cgColor
-        view.layer.borderWidth = 5
-        view.backgroundColor = UIColor.red
+        view.layer.cornerRadius = 15
+        view.layer.masksToBounds = false
         return view
     }
     
     private func setupLabel(label: UILabel) -> UILabel{
-        label.font = label.font.withSize(50)
+        label.font = label.font.withSize(25)
+        label.textColor = UIColor.white
+//        label.shadowColor = UIColor.black
         return label
     }
     
