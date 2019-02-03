@@ -27,5 +27,21 @@ public class PokeAPI {
             }
         }
     }
+    
+    func requestPokemonsByType(url: String, completion: @escaping ([JSON], [JSON], [JSON]) -> ()) -> (){
+        Alamofire.request(url).responseJSON{ response in
+            if(response.result.value != nil) {
+                let jsonResponse = JSON(response.result.value!)
+                
+                let pokemonData = jsonResponse["pokemon"].array
+                let damageFrom = jsonResponse["damage_relations"]["double_damage_from"].array
+                let damageTo = jsonResponse["damage_relations"]["double_damage_to"].array
+                
+                if (pokemonData != nil) && (damageFrom != nil) && (damageTo != nil){
+                    completion(pokemonData!, damageFrom!, damageTo!)
+                }
+            }
+        }
+    }
 
 }

@@ -10,6 +10,7 @@ target 'pokedex' do
   pod 'Alamofire', '~> 4.7'
   pod 'Kingfisher', '~> 5.0'
   pod 'SwiftyJSON', '~> 4.0'
+  pod 'SwiftOverlays', '~> 5.0.1'
 
   target 'pokedexTests' do
     inherit! :search_paths
