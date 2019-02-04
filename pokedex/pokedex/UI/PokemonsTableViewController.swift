@@ -9,7 +9,9 @@
 import UIKit
 
 class PokemonsTableViewController: UITableViewController {
-
+    
+    var pokemonMiniData: PokemonType!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -18,7 +20,16 @@ class PokemonsTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        self.title = pokemonMiniData.typeName
+        self.navigationController?.navigationBar.barTintColor = UIColor().typeColor(typeName: pokemonMiniData.typeName)
+        
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+    }
+    
 
     // MARK: - Table view data source
 

@@ -21,7 +21,7 @@ public class PokemonType {
         self.typeName = typeName
         self.typeURL = typeURL
         self.typePokemons = typePokemons
-        self.typePokemonsCount = "\(typePokemons.count)"
+        self.typePokemonsCount = "\(typePokemons.count) x"
         self.effetiveAgainst = effetiveAgainst
         self.vulnerableTo = vulnerableTo
     }

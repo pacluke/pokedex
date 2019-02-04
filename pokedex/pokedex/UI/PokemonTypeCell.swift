@@ -21,8 +21,8 @@ class PokemonTypeCell: UITableViewCell {
     
     @IBOutlet weak var pokemonTypeViewBehind: UIView!
     @IBOutlet weak var pokemonTypeLabel: UILabel!
-    @IBOutlet weak var pokemonCountView: UIView!
-    @IBOutlet weak var pokemonCountLabel: UILabel!
+//    @IBOutlet weak var pokemonCountView: UIView!
+//    @IBOutlet weak var pokemonCountLabel: UILabel!
     
     @IBOutlet weak var pokemonStrongAgainstNameView: UIView!
     @IBOutlet weak var pokemonStrongAgainstView01: UIView!
@@ -59,9 +59,9 @@ class PokemonTypeCell: UITableViewCell {
         
         // Initialization code
         self.pokemonTypeViewBehind = self.setupViewBehind(view: pokemonTypeViewBehind)
-        self.pokemonCountView = self.setupCountView(view: pokemonCountView)
+//        self.pokemonCountView = self.setupCountView(view: pokemonCountView)
         self.pokemonTypeLabel = self.setupLabel(label: pokemonTypeLabel)
-        self.pokemonCountLabel = self.setupCountLabel(label: pokemonCountLabel)
+//        self.pokemonCountLabel = self.setupPokemonLabel(label: pokemonCountLabel)
 
         self.pokemonStrongAgainstNameView = self.setupViewBehind(view: pokemonStrongAgainstNameView)
         self.pokemonStrongAgainstView01 = self.setupViewBehind(view: pokemonStrongAgainstView01)
@@ -121,11 +121,18 @@ class PokemonTypeCell: UITableViewCell {
     private func setupLabel(label: UILabel) -> UILabel{
         label.font = label.font.withSize(25)
         label.textColor = UIColor.white
+        label.layer.shadowOpacity = 0.5
+        label.layer.shadowOffset = CGSize(width: 0.5, height: 0.5)
         return label
     }
     
     private func setupCountLabel(label: UILabel) -> UILabel{
         label.font = label.font.withSize(15)
+        return label
+    }
+    
+    private func setupPokemonLabel(label: UILabel) -> UILabel{
+        label.font = label.font.withSize(10)
         return label
     }
 }
