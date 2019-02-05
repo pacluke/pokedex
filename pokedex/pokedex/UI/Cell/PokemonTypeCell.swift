@@ -111,13 +111,6 @@ class PokemonTypeCell: UITableViewCell {
         return view
     }
     
-    private func setupCountView(view: UIView) -> UIView{
-        view.layer.cornerRadius = 5
-        view.layer.masksToBounds = false
-        view.layer.borderWidth = 2
-        return view
-    }
-    
     private func setupLabel(label: UILabel) -> UILabel{
         label.font = label.font.withSize(25)
         label.textColor = UIColor.white

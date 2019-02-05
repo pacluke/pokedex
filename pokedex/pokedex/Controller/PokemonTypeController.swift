@@ -39,6 +39,7 @@ public class PokemonTypeController {
                         let pokemonName: String = pokemon["pokemon"]["name"].string?.capitalizingFirstLetter() ?? "not found"
                         let pokemonURL: String = pokemon["pokemon"]["url"].string ?? "not found"
                         pokemons.append(PokemonMini(pokemonName: pokemonName, pokemonURL: pokemonURL))
+                        pokemons = pokemons.sorted(by: { $0.pokemonName < $1.pokemonName })
                     }
                     
                     var effectiveAgainstTypes:[String] = []
@@ -94,7 +95,7 @@ extension UIColor{
         case "Normal":
             return UIColor(red:0.64, green:0.67, blue:0.69, alpha:1.0)
         case "Poison":
-            return UIColor(red:0.64, green:0.55, blue:0.13, alpha:1.0)
+            return UIColor(red:0.73, green:0.50, blue:0.79, alpha:1.0)
         case "Psychic":
             return UIColor(red:0.95, green:0.40, blue:0.73, alpha:1.0)
         case "Shadow":

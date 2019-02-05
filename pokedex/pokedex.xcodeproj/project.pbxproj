@@ -190,10 +190,8 @@
 		C1AEC89C220656E300425813 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				C1AEC8A6220658C100425813 /* PokemonTypeCell.swift */,
-				C1AEC8AA220666F700425813 /* PokemonTypesTableViewController.swift */,
-				C1AEC8AC22069D1C00425813 /* PokemonsTableViewController.swift */,
-				C1AEC8B02207B87C00425813 /* PokemonMiniCell.swift */,
+				C1AEC8B322091B3400425813 /* TableView */,
+				C1AEC8B222091B2A00425813 /* Cell */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -222,6 +220,24 @@
 				C1AEC875220654C800425813 /* LaunchScreen.storyboard */,
 			);
 			path = Layout;
+			sourceTree = "<group>";
+		};
+		C1AEC8B222091B2A00425813 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C1AEC8A6220658C100425813 /* PokemonTypeCell.swift */,
+				C1AEC8B02207B87C00425813 /* PokemonMiniCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		C1AEC8B322091B3400425813 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				C1AEC8AA220666F700425813 /* PokemonTypesTableViewController.swift */,
+				C1AEC8AC22069D1C00425813 /* PokemonsTableViewController.swift */,
+			);
+			path = TableView;
 			sourceTree = "<group>";
 		};
 		ED857C1A84A672849CCE2094 /* Pods */ = {

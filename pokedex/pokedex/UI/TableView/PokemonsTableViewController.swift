@@ -8,9 +8,19 @@
 
 import UIKit
 
+extension PokemonsTableViewController: UISearchResultsUpdating {
+    // MARK: - UISearchResultsUpdating Delegate
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!)
+    }
+}
+
 class PokemonsTableViewController: UITableViewController {
     
+    let searchController = UISearchController(searchResultsController: nil)
+    
     var pokemonMiniData: PokemonType!
+    private var filteredPokemons:[PokemonMini] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,14 +34,38 @@ class PokemonsTableViewController: UITableViewController {
         self.title = pokemonMiniData.typeName
         self.navigationController?.navigationBar.barTintColor = UIColor().typeColor(typeName: pokemonMiniData.typeName)
         
-        print(pokemonMiniData.typePokemons)
+        // search bar
         
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search \(pokemonMiniData.typeName.lowercased()) pokémon"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+        searchController.searchBar.tintColor = UIColor.white
+    }
+    
+    func searchBarIsEmpty() -> Bool {
+        // Returns true if the text is empty or nil
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    func filterContentForSearchText(_ searchText: String, scope: String = "All") {
+        filteredPokemons = pokemonMiniData.typePokemons.filter({( type : PokemonMini) -> Bool in
+            return type.pokemonName.lowercased().contains(searchText.lowercased())
+        })
+        
+        tableView.reloadData()
+    }
+    
+    func isFiltering() -> Bool {
+        return searchController.isActive && !searchBarIsEmpty()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        self.tableView.reloadData()
+        self.title = pokemonMiniData.typeName
+        self.navigationController?.navigationBar.barTintColor = UIColor().typeColor(typeName: pokemonMiniData.typeName)
     }
     
 
@@ -39,21 +73,34 @@ class PokemonsTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
+        if isFiltering() {
+            return filteredPokemons.count
+        }
         return pokemonMiniData.typePokemons.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
         
-        cell.textLabel?.text = pokemonMiniData.typePokemons[indexPath.row].pokemonName
+        let typeName = pokemonMiniData.typeName
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PokemonMini", for: indexPath) as! PokemonMiniCell
         
-        // Configure the cell...
+        let pokemon: PokemonMini
+        
+        if isFiltering() {
+            pokemon = self.filteredPokemons[indexPath.row]
+        } else {
+            pokemon = self.pokemonMiniData.typePokemons[indexPath.row]
+        }
+        
+        cell.pokemonMiniNameLabel?.text = pokemon.pokemonName
+        cell.pokemonMiniView.backgroundColor = UIColor().typeColor(typeName: typeName)
+        cell.selectionStyle = UITableViewCell.SelectionStyle.none
 
         return cell
     }
