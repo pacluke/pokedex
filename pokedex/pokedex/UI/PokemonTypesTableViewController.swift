@@ -119,7 +119,7 @@ class PokemonTypesTableViewController: UITableViewController {
         cell.pokemonStrongAgainstView02.setTypeView(types: effectiveAgainst, index: 1)
         cell.pokemonStrongAgainstLabel03.setTypeLabel(types: effectiveAgainst, index: 2)
         cell.pokemonStrongAgainstView03.setTypeView(types: effectiveAgainst, index: 2)
-        cell.pokemonStrongAgainstLabel04.setTypeLabel(types: effectiveAgainst, index: 4)
+        cell.pokemonStrongAgainstLabel04.setTypeLabel(types: effectiveAgainst, index: 3)
         cell.pokemonStrongAgainstView04.setTypeView(types: effectiveAgainst, index: 3)
         cell.pokemonStrongAgainstLabel05.setTypeLabel(types: effectiveAgainst, index: 4)
         cell.pokemonStrongAgainstView05.setTypeView(types: effectiveAgainst, index: 4)

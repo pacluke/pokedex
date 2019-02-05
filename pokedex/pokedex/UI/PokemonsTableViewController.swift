@@ -24,10 +24,14 @@ class PokemonsTableViewController: UITableViewController {
         self.title = pokemonMiniData.typeName
         self.navigationController?.navigationBar.barTintColor = UIColor().typeColor(typeName: pokemonMiniData.typeName)
         
+        print(pokemonMiniData.typePokemons)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        
+        self.tableView.reloadData()
     }
     
 
@@ -40,18 +44,20 @@ class PokemonsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return pokemonMiniData.typePokemons.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
+        
+        cell.textLabel?.text = pokemonMiniData.typePokemons[indexPath.row].pokemonName
+        
         // Configure the cell...
 
         return cell
     }
-    */
+ 
 
     /*
     // Override to support conditional editing of the table view.
