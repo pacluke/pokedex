@@ -43,5 +43,14 @@ public class PokeAPI {
             }
         }
     }
+    
+    func requestPokemonsInfo(url: String, completion: @escaping (JSON) -> ()) -> (){
+        Alamofire.request(url).responseJSON{ response in
+            if(response.result.value != nil) {
+                let jsonResponse = JSON(response.result.value!)
+                completion(jsonResponse)
+            }
+        }
+    }
 
 }
