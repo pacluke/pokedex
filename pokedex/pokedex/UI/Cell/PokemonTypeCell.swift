@@ -86,7 +86,7 @@ class PokemonTypeCell: UITableViewCell {
     }
     
     private func setupCountLabel(label: UILabel) -> UILabel{
-        label.font = label.font.withSize(15)
+        label.font = label.font.withSize(14)
         label.layer.shadowOffset = CGSize(width: 0.5, height: 0.5)
         label.layer.cornerRadius = 5
         label.layer.masksToBounds = false
