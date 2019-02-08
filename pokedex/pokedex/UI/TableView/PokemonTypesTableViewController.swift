@@ -148,19 +148,3 @@ class PokemonTypesTableViewController: UITableViewController {
         }
     }
 }
-
-extension UILabel{
-    func setTypeLabel(types: [String], index: Int){
-        if types.count > index {
-            self.text = types[index]
-            self.textColor = UIColor.white
-            self.layer.backgroundColor = UIColor().typeColor(typeName: types[index]).cgColor
-            self.layer.shadowOpacity = 0.5
-            self.layer.shadowOffset = CGSize(width: 0.5, height: 0.5)
-        }
-        else {
-            self.text = " "
-            self.layer.backgroundColor = UIColor.clear.cgColor
-        }
-    }
-}
