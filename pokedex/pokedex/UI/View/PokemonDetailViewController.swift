@@ -25,7 +25,9 @@ class PokemonDetailViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         self.title = "Pokémon detail"
-        
+        let shareButton =  UIBarButtonItem(title: "Share", style: .plain, target: self, action: #selector(showShareOptions))
+        self.navigationItem.rightBarButtonItem = shareButton
+
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -33,12 +35,48 @@ class PokemonDetailViewController: UIViewController {
         self.pokemonDetailCard.isHidden = true
         self.pokemonController.getPokemonData(url: pokemonMiniData.pokemonURL) { pokemon in
             self.removeAllOverlays()
-            self.pokemonDetailCard.setCard(pokemon: pokemon)
+            self.pokemon = pokemon
+            self.pokemonDetailCard.setCard(pokemon: self.pokemon)
             self.pokemonDetailCard.isHidden = false
         }
-        
-        
     }
+    
+    private func shareText() {
+        let pokemonDescription = self.pokemon.description()
+        let textToShare = [ pokemonDescription ]
+        let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view
+        
+        self.present(activityViewController, animated: true, completion: nil)
+    }
+    
+    private func shareCard() {
+        UIGraphicsBeginImageContextWithOptions(self.pokemonDetailCard.frame.size, true, 0.0)
+        self.pokemonDetailCard.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let img = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        let activityViewController = UIActivityViewController(activityItems: [img!], applicationActivities: nil)
+        self.present(activityViewController, animated: true, completion: nil)
+    }
+    
+    
+    @objc private func showShareOptions() {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let shareText = UIAlertAction(title: "Share pokémon text", style: .default) { (action) in
+            self.shareText()
+        }
+        let shareCard = UIAlertAction(title: "Share pokémon card", style: .default) { (action) in
+            self.shareCard()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+
+        }
+        actionSheet.addAction(shareText)
+        actionSheet.addAction(shareCard)
+        actionSheet.addAction(cancelAction)
+        self.present(actionSheet, animated: true, completion: nil)
+    }
+    
     
     /*
     // MARK: - Navigation
