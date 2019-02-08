@@ -39,7 +39,6 @@ public class PokemonTypeController {
                         let pokemonName: String = pokemon["pokemon"]["name"].string?.capitalizingFirstLetter() ?? "not found"
                         let pokemonURL: String = pokemon["pokemon"]["url"].string ?? "not found"
                         pokemons.append(PokemonMini(pokemonName: pokemonName, pokemonURL: pokemonURL))
-                        pokemons = pokemons.sorted(by: { $0.pokemonName < $1.pokemonName })
                     }
                     
                     var effectiveAgainstTypes:[String] = []
@@ -53,7 +52,7 @@ public class PokemonTypeController {
                     for item in damageFrom{
                         vulnerableToTypes.append(item["name"].string?.capitalizingFirstLetter() ?? "")
                     }
-                    
+                    pokemons = pokemons.sorted(by: { $0.pokemonName < $1.pokemonName })
                     types.append(PokemonType(typeName: typeName, typeURL: typeURL, typePokemons: pokemons, effetiveAgainst: effectiveAgainstTypes, vulnerableTo: vulnerableToTypes))
                     types = types.sorted(by: { $0.typeName < $1.typeName })
                     completion(types)
@@ -71,7 +70,7 @@ extension UIColor{
         case "Fire":
             return UIColor(red:0.99, green:0.49, blue:0.14, alpha:1.0)
         case "Rock":
-            return UIColor(red:0.64, green:0.55, blue:0.13, alpha:1.0)
+            return UIColor(red:0.68, green:0.59, blue:0.30, alpha:1.0)
         case "Flying":
             return UIColor(red:0.24, green:0.78, blue:0.94, alpha:1.0)
         case "Dark":
@@ -79,7 +78,7 @@ extension UIColor{
         case "Dragon":
             return UIColor(red:0.95, green:0.43, blue:0.34, alpha:1.0)
         case "Electric":
-            return UIColor(red:0.93, green:0.84, blue:0.20, alpha:1.0)
+            return UIColor(red:0.93, green:0.64, blue:0.01, alpha:1.0)
         case "Fairy":
             return UIColor(red:0.99, green:0.73, blue:0.91, alpha:1.0)
         case "Fighting":
@@ -89,7 +88,7 @@ extension UIColor{
         case "Grass":
             return UIColor(red:0.61, green:0.80, blue:0.31, alpha:1.0)
         case "Ground":
-            return UIColor(red:0.97, green:0.87, blue:0.25, alpha:1.0)
+            return UIColor(red:0.65, green:0.46, blue:0.19, alpha:1.0)
         case "Ice":
             return UIColor(red:0.32, green:0.77, blue:0.91, alpha:1.0)
         case "Normal":

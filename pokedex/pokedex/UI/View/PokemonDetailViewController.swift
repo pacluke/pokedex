@@ -7,16 +7,39 @@
 //
 
 import UIKit
+import SwiftOverlays
 
 class PokemonDetailViewController: UIViewController {
-
+    
+    @IBOutlet weak var pokemonDetailCard: PokemonDetailCard!
+    
+    // data
+    var pokemonMiniData: PokemonMini!
+    var pokemon: Pokemon!
+    
+    // controller
+    let pokemonController = PokemonController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.title = "Pokémon detail"
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.showWaitOverlay()
+        self.pokemonDetailCard.isHidden = true
+        self.pokemonController.getPokemonData(url: pokemonMiniData.pokemonURL) { pokemon in
+            self.removeAllOverlays()
+            self.pokemonDetailCard.setCard(pokemon: pokemon)
+            self.pokemonDetailCard.isHidden = false
+        }
+        
+        
     }
     
-
     /*
     // MARK: - Navigation
 

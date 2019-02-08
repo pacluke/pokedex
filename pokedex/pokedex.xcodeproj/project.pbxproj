@@ -22,6 +22,9 @@
 		C1AEC8AD22069D1C00425813 /* PokemonsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AEC8AC22069D1C00425813 /* PokemonsTableViewController.swift */; };
 		C1AEC8AF220737D200425813 /* PokemonMini.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AEC8AE220737D200425813 /* PokemonMini.swift */; };
 		C1AEC8B12207B87C00425813 /* PokemonMiniCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AEC8B02207B87C00425813 /* PokemonMiniCell.swift */; };
+		C1AEC8BA220A46FC00425813 /* PokemonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AEC8B9220A46FC00425813 /* PokemonController.swift */; };
+		C1AEC8BD220A552B00425813 /* PokemonDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AEC8BC220A552B00425813 /* PokemonDetailViewController.swift */; };
+		C1AEC8BF220CFB9500425813 /* PokemonDetailCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AEC8BE220CFB9500425813 /* PokemonDetailCard.swift */; };
 		C62C10DDDF3AC82F5058B823 /* Pods_pokedexUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7C43C8EBD798957BB81EE20 /* Pods_pokedexUITests.framework */; };
 		C79EDA64350A1C47D1EC3A5F /* Pods_pokedexTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E52C9D6D3CEEFC9C12BCA50B /* Pods_pokedexTests.framework */; };
 		CD78B664CA29D2E41299CE7A /* Pods_pokedex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CA771EA8CC3420C5089102E /* Pods_pokedex.framework */; };
@@ -72,6 +75,9 @@
 		C1AEC8AC22069D1C00425813 /* PokemonsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonsTableViewController.swift; sourceTree = "<group>"; };
 		C1AEC8AE220737D200425813 /* PokemonMini.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonMini.swift; sourceTree = "<group>"; };
 		C1AEC8B02207B87C00425813 /* PokemonMiniCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonMiniCell.swift; sourceTree = "<group>"; };
+		C1AEC8B9220A46FC00425813 /* PokemonController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonController.swift; sourceTree = "<group>"; };
+		C1AEC8BC220A552B00425813 /* PokemonDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetailViewController.swift; sourceTree = "<group>"; };
+		C1AEC8BE220CFB9500425813 /* PokemonDetailCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetailCard.swift; sourceTree = "<group>"; };
 		E52C9D6D3CEEFC9C12BCA50B /* Pods_pokedexTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_pokedexTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7C43C8EBD798957BB81EE20 /* Pods_pokedexUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_pokedexUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFDE94CE67DFDDB026611EE9 /* Pods-pokedexUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pokedexUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-pokedexUITests/Pods-pokedexUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -140,8 +146,8 @@
 		C1AEC86B220654C700425813 /* pokedex */ = {
 			isa = PBXGroup;
 			children = (
-				C1AEC89B220656B600425813 /* Controller */,
 				C1AEC878220654C800425813 /* Info.plist */,
+				C1AEC89B220656B600425813 /* Controller */,
 				C1AEC8A32206577900425813 /* Layout */,
 				C1AEC89A220656AF00425813 /* Model */,
 				C1AEC8A12206575400425813 /* Service */,
@@ -183,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				C1AEC8A82206599D00425813 /* PokemonTypeController.swift */,
+				C1AEC8B9220A46FC00425813 /* PokemonController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -190,6 +197,7 @@
 		C1AEC89C220656E300425813 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				C1AEC8BB220A550100425813 /* View */,
 				C1AEC8B322091B3400425813 /* TableView */,
 				C1AEC8B222091B2A00425813 /* Cell */,
 			);
@@ -215,9 +223,9 @@
 		C1AEC8A32206577900425813 /* Layout */ = {
 			isa = PBXGroup;
 			children = (
-				C1AEC870220654C700425813 /* Main.storyboard */,
 				C1AEC873220654C800425813 /* Assets.xcassets */,
 				C1AEC875220654C800425813 /* LaunchScreen.storyboard */,
+				C1AEC870220654C700425813 /* Main.storyboard */,
 			);
 			path = Layout;
 			sourceTree = "<group>";
@@ -238,6 +246,15 @@
 				C1AEC8AC22069D1C00425813 /* PokemonsTableViewController.swift */,
 			);
 			path = TableView;
+			sourceTree = "<group>";
+		};
+		C1AEC8BB220A550100425813 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C1AEC8BC220A552B00425813 /* PokemonDetailViewController.swift */,
+				C1AEC8BE220CFB9500425813 /* PokemonDetailCard.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		ED857C1A84A672849CCE2094 /* Pods */ = {
@@ -485,6 +502,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1AEC8BF220CFB9500425813 /* PokemonDetailCard.swift in Sources */,
 				C1AEC8A5220657AB00425813 /* PokeAPI.swift in Sources */,
 				C1AEC8A7220658C100425813 /* PokemonTypeCell.swift in Sources */,
 				C1AEC8A92206599D00425813 /* PokemonTypeController.swift in Sources */,
@@ -492,9 +510,11 @@
 				C1AEC8AB220666F700425813 /* PokemonTypesTableViewController.swift in Sources */,
 				C1AEC8AD22069D1C00425813 /* PokemonsTableViewController.swift in Sources */,
 				C1AEC89E2206570500425813 /* Pokemon.swift in Sources */,
+				C1AEC8BD220A552B00425813 /* PokemonDetailViewController.swift in Sources */,
 				C1AEC8AF220737D200425813 /* PokemonMini.swift in Sources */,
 				C1AEC8B12207B87C00425813 /* PokemonMiniCell.swift in Sources */,
 				C1AEC8A02206571200425813 /* PokemonType.swift in Sources */,
+				C1AEC8BA220A46FC00425813 /* PokemonController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

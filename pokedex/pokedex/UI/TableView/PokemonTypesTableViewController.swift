@@ -55,6 +55,7 @@ class PokemonTypesTableViewController: UITableViewController {
         super.viewWillAppear(true)
         self.title = "Pokédex"
         self.navigationController?.navigationBar.barTintColor = UIColor(red:0.89, green:0.21, blue:0.05, alpha:1.0)
+        self.navigationController?.navigationBar.prefersLargeTitles = true
     }
     
 
@@ -114,26 +115,16 @@ class PokemonTypesTableViewController: UITableViewController {
         let vulnerableTo = type.vulnerableTo
 
         cell.pokemonStrongAgainstLabel01.setTypeLabel(types: effectiveAgainst, index: 0)
-        cell.pokemonStrongAgainstView01.setTypeView(types: effectiveAgainst, index: 0)
         cell.pokemonStrongAgainstLabel02.setTypeLabel(types: effectiveAgainst, index: 1)
-        cell.pokemonStrongAgainstView02.setTypeView(types: effectiveAgainst, index: 1)
         cell.pokemonStrongAgainstLabel03.setTypeLabel(types: effectiveAgainst, index: 2)
-        cell.pokemonStrongAgainstView03.setTypeView(types: effectiveAgainst, index: 2)
         cell.pokemonStrongAgainstLabel04.setTypeLabel(types: effectiveAgainst, index: 3)
-        cell.pokemonStrongAgainstView04.setTypeView(types: effectiveAgainst, index: 3)
         cell.pokemonStrongAgainstLabel05.setTypeLabel(types: effectiveAgainst, index: 4)
-        cell.pokemonStrongAgainstView05.setTypeView(types: effectiveAgainst, index: 4)
         
         cell.pokemonVunerableToLabel01.setTypeLabel(types: vulnerableTo, index: 0)
-        cell.pokemonVunerableToView01.setTypeView(types: vulnerableTo, index: 0)
         cell.pokemonVunerableToLabel02.setTypeLabel(types: vulnerableTo, index: 1)
-        cell.pokemonVunerableToView02.setTypeView(types: vulnerableTo, index: 1)
         cell.pokemonVunerableToLabel03.setTypeLabel(types: vulnerableTo, index: 2)
-        cell.pokemonVunerableToView03.setTypeView(types: vulnerableTo, index: 2)
         cell.pokemonVunerableToLabel04.setTypeLabel(types: vulnerableTo, index: 3)
-        cell.pokemonVunerableToView04.setTypeView(types: vulnerableTo, index: 3)
         cell.pokemonVunerableToLabel05.setTypeLabel(types: vulnerableTo, index: 4)
-        cell.pokemonVunerableToView05.setTypeView(types: vulnerableTo, index: 4)
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
         
         return cell
@@ -141,21 +132,19 @@ class PokemonTypesTableViewController: UITableViewController {
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        let selectedRow = self.tableView.indexPathForSelectedRow!.row
+        let type: PokemonType
+        
+        if isFiltering() {
+            type = self.filteredTypes[selectedRow]
+        } else {
+            type = self.typesData[selectedRow]
+        }
+        
         if segue.identifier == "PokemonList" {
             let pokemonListView = segue.destination as! PokemonsTableViewController
-            let selectedRow = self.tableView.indexPathForSelectedRow!.row
-            pokemonListView.pokemonMiniData = typesData[selectedRow]
-        }
-    }
-}
-
-extension UIView{
-    func setTypeView(types: [String], index: Int){
-        if types.count > index {
-            self.layer.backgroundColor = UIColor().typeColor(typeName: types[index]).cgColor
-        }
-        else {
-            self.layer.backgroundColor = UIColor.clear.cgColor
+            pokemonListView.pokemonMiniData = type
         }
     }
 }
@@ -165,9 +154,13 @@ extension UILabel{
         if types.count > index {
             self.text = types[index]
             self.textColor = UIColor.white
+            self.layer.backgroundColor = UIColor().typeColor(typeName: types[index]).cgColor
+            self.layer.shadowOpacity = 0.5
+            self.layer.shadowOffset = CGSize(width: 0.5, height: 0.5)
         }
         else {
-            self.text = ""
+            self.text = " "
+            self.layer.backgroundColor = UIColor.clear.cgColor
         }
     }
 }
